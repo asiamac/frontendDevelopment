@@ -1,3 +1,3 @@
 # frontendDevelopment
-#
-#Joanna Maćkowiak 260790
+
+Joanna Maćkowiak 260790

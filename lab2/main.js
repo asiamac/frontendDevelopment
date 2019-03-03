@@ -131,3 +131,11 @@ function updateClothes(clothes, id, key, value) {
 }
 
 updateClothes(jeans, cloth5.id, 'price', 320);
+
+function deleteClothes(clothes, id) {
+    return clothes.filter(function(cloth) {
+        return cloth.id !== this.id
+    }, {id: id})
+}
+
+jeans = deleteClothes(jeans, cloth3.id)

@@ -16,7 +16,7 @@ var cloth2 = {
     model: 'skinny',
     size: 29,
     forMen: false,
-    price: 290,
+    price: 190,
     colors: ['dark indigo', 'white'],
     outlet: {
         outlet: true,
@@ -42,7 +42,7 @@ var cloth4 = {
     model: 'relaxed',
     size: 31,
     forMen: true,
-    price: 300,
+    price: 200,
     colors: ['navy blue', 'grey'],
     outlet: {
         outlet: true,
@@ -68,7 +68,7 @@ var cloth6 = {
     model: 'straight',
     size: 33,
     forMen: true,
-    price: 260,
+    price: 220,
     colors: ['navy blue'],
     outlet: {
         outlet: false,
@@ -87,3 +87,21 @@ function addClothes(clothes) {
 }
 
 addClothes([cloth1, cloth2, cloth3, cloth4, cloth5, cloth6]);
+
+function sortByPrice(clothes, price) {
+  var cheapJeans = jeans.filter(function (cloth, price) {
+      return cloth.price < price
+  })
+  var expensiveJeans = jeans.filter(function (cloth, price) {
+      return cloth.price >= price
+  })
+
+  var sortedByPrice = {
+      cheapJeans: cheapJeans,
+      expensiveJeans: expensiveJeans
+  }
+
+  return sortedByPrice
+}
+
+findByPrice(jeans, price);

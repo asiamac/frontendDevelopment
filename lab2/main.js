@@ -86,41 +86,35 @@ var cloth6 = {
 
 var jeans = [];
 
-function addClothes(clothes) {
-    clothes.forEach(
+function addClothes(clothes, collection) {
+    collection.forEach(
         function (cloth) {
-            jeans.push(cloth)
+            clothes.push(cloth)
         }
     )
 }
 
-addClothes([cloth1, cloth2, cloth3, cloth4, cloth5, cloth6]);
-
 function sortByPrice(clothes, price) {
-    var cheapJeans = jeans.filter(function (cloth) {
+    var cheap = clothes.filter(function (cloth) {
         return cloth.price < this.price;
     }, {price: price});
 
-    var expensiveJeans = jeans.filter(function (cloth, price) {
+    var expensive = clothes.filter(function (cloth, price) {
         return cloth.price >= this.price;
     }, {price: price});
     
     var sortedByPrice = {
-        cheapJeans: cheapJeans,
-        expensiveJeans: expensiveJeans
+        cheap: cheap,
+        expensive: expensive
     };
     return sortedByPrice
 }
-
-sortByPrice(jeans, 250);
 
 function findByPrice(clothes, priceMin, priceMax) {
     return clothes.filter(function (cloth) {
         return cloth.price >= this.priceMin && cloth.price <= this.priceMax
     }, {priceMin: priceMin, priceMax: priceMax})
 }
-
-findByPrice(jeans, 210, 260);
 
 function updateClothes(clothes, id, key, value) {
     var foundItem = clothes.find(function(cloth) {
@@ -130,12 +124,14 @@ function updateClothes(clothes, id, key, value) {
     foundItem[key] = value;
 }
 
-updateClothes(jeans, cloth5.id, 'price', 320);
-
 function deleteClothes(clothes, id) {
     return clothes.filter(function(cloth) {
         return cloth.id !== this.id
     }, {id: id})
 }
 
-jeans = deleteClothes(jeans, cloth3.id)
+addClothes(jeans, [cloth1, cloth2, cloth3, cloth4, cloth5, cloth6]);
+sortByPrice(jeans, 250);
+findByPrice(jeans, 210, 260);
+updateClothes(jeans, cloth5.id, 'price', 320);
+jeans = deleteClothes(jeans, cloth3.id);

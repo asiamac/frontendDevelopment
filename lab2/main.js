@@ -105,3 +105,11 @@ function sortByPrice(clothes, price) {
 }
 
 sortByPrice(jeans, 250);
+
+function findByPrice(clothes, priceMin, priceMax) {
+    return clothes.filter(function (cloth) {
+        return cloth.price >= this.priceMin && cloth.price <= this.priceMax
+    }, {priceMin: priceMin, priceMax: priceMax})
+}
+
+findByPrice(jeans, 210, 260);

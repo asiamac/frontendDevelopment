@@ -89,19 +89,19 @@ function addClothes(clothes) {
 addClothes([cloth1, cloth2, cloth3, cloth4, cloth5, cloth6]);
 
 function sortByPrice(clothes, price) {
-  var cheapJeans = jeans.filter(function (cloth, price) {
-      return cloth.price < price
-  })
-  var expensiveJeans = jeans.filter(function (cloth, price) {
-      return cloth.price >= price
-  })
+    var cheapJeans = jeans.filter(function (cloth) {
+        return cloth.price < this.price;
+    }, {price: price});
 
-  var sortedByPrice = {
-      cheapJeans: cheapJeans,
-      expensiveJeans: expensiveJeans
-  }
-
-  return sortedByPrice
+    var expensiveJeans = jeans.filter(function (cloth, price) {
+        return cloth.price >= this.price;
+    }, {price: price});
+    
+    var sortedByPrice = {
+        cheapJeans: cheapJeans,
+        expensiveJeans: expensiveJeans
+    };
+    return sortedByPrice
 }
 
-findByPrice(jeans, price);
+sortByPrice(jeans, 250);

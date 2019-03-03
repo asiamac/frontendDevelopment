@@ -1,4 +1,7 @@
+var uuid4 = require('uuid4')
+
 var cloth1 = {
+    id: uuid4(),
     type: 'jeans',
     model: 'slim',
     size: 28,
@@ -12,6 +15,7 @@ var cloth1 = {
 };
 
 var cloth2 = {
+    id: uuid4(),
     type: 'jeans',
     model: 'skinny',
     size: 29,
@@ -25,6 +29,7 @@ var cloth2 = {
 };
 
 var cloth3 = {
+    id: uuid4(),
     type: 'jeans',
     model: 'bootcut',
     size: 30,
@@ -38,6 +43,7 @@ var cloth3 = {
 };
 
 var cloth4 = {
+    id: uuid4(),
     type: 'jeans',
     model: 'relaxed',
     size: 31,
@@ -51,6 +57,7 @@ var cloth4 = {
 };
 
 var cloth5 = {
+    id: uuid4(),
     type: 'jeans',
     model: 'loose',
     size: 32,
@@ -64,6 +71,7 @@ var cloth5 = {
 };
 
 var cloth6 = {
+    id: uuid4(),
     type: 'jeans',
     model: 'straight',
     size: 33,
@@ -113,3 +121,13 @@ function findByPrice(clothes, priceMin, priceMax) {
 }
 
 findByPrice(jeans, 210, 260);
+
+function updateClothes(clothes, id, key, value) {
+    var foundItem = clothes.find(function(cloth) {
+        return cloth.id === this.id
+    }, {id: id});
+
+    foundItem[key] = value;
+}
+
+updateClothes(jeans, cloth5.id, 'price', 320);

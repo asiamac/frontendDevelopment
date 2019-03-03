@@ -75,3 +75,15 @@ var cloth6 = {
         year: 2019
     }
 };
+
+var jeans = [];
+
+function addClothes(clothes) {
+    clothes.forEach(
+        function (cloth) {
+            jeans.push(cloth)
+        }
+    )
+}
+
+addClothes([cloth1, cloth2, cloth3, cloth4, cloth5, cloth6]);

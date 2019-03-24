@@ -116,6 +116,12 @@ function findByPrice(clothes, priceMin, priceMax) {
     }, {priceMin: priceMin, priceMax: priceMax})
 }
 
+function findByPrice2(clothes, priceMin, priceMax) {
+    return clothes.filter(function (cloth) {
+        return cloth.price >= priceMin && cloth.price <= priceMax
+    })
+}
+
 function updateClothes(clothes, id, key, value) {
     var foundItem = clothes.find(function(cloth) {
         return cloth.id === this.id
@@ -132,6 +138,6 @@ function deleteClothes(clothes, id) {
 
 addClothes(jeans, [cloth1, cloth2, cloth3, cloth4, cloth5, cloth6]);
 sortByPrice(jeans, 250);
-findByPrice(jeans, 210, 260);
+console.log(findByPrice2(jeans, 210, 260));
 updateClothes(jeans, cloth5.id, 'price', 320);
 jeans = deleteClothes(jeans, cloth3.id);

@@ -1,68 +1,141 @@
-var uuid4 = require('uuid4')
+const uuid4 = require('uuid4')
 
-var clothes = {}
-clothes.module = (function () {
-    function Cloth(id, type) {
-        this.id = id,
-        this.type = type
-    }
+class Clothes {
+  constructor(id, type) {
+    this._id = id
+    this._type = type
+  }
 
-    function Jeans(id, type, model, size, forMen, price, colors, outlet) {
-        Cloth.call(this, id, type)
-        this.model = model,
-        this.size = size,
-        this.forMen = forMen,
-        this.price = price,
-        this.colors = colors,
-        this.outlet = outlet
-    }
+  set id(value) {
+    this._id = value
+  }
 
-    var cloth1 = new Jeans('uuid4()', 'jeans', 'slim', 28, false, 270, ['dark indigo', 'light wash blue'], false);
+  get type() {
+    return this._type
+  }
 
-    var cloth2 = new Jeans('uuid4()', 'jeans', 'skinny', 29, false, 190, ['dark indigo', 'white'], true);
+  set type(value) {
+    this._type = value
+  }
 
-    var cloth3 = new Jeans('uuid4()', 'jeans', 'bootcut', 30, false, 250, ['light wash blue'], false);
+  get type() {
+    return this._type
+  }
 
-    var cloth4 = new Jeans('uuid4()', 'jeans', 'relaxed', 31, true, 200, ['navy blue', 'grey'], true);
+  addClothes(clothes, collection) {
+    collection.forEach(function(cloth) {
+      clothes.push(cloth)
+    })
+  }
+}
 
-    var cloth5 = new Jeans('uuid4()', 'jeans', 'loose', 32, true, 280, ['grey', 'white'], false);
+let Skirt = new Clothes(uuid4(), 'Skirt')
 
-    var cloth6 = new Jeans('uuid4()', 'jeans', 'straight', 33, true, 220, ['navy blue'], true);
+console.log(Skirt)
 
-    var jeans = [];
+class Jeans extends Clothes {
+  constructor(id, type, model, size, forMen, price, colors, outlet) {
+    super(id, type),
+      (this._model = model),
+      (this._size = size),
+      (this._forMen = forMen),
+      (this._price = price),
+      (this._colors = colors),
+      (this._outlet = outlet)
+  }
 
-    Cloth.prototype = {
-        getId: function () {
-            return this.id;
-        },
-        getType: function () {
-            return this.type;
-        }
-    }
+  set model(value) {
+    this._model = value.toLowerCase()
+  }
 
-    Jeans.prototype = Object.create(Cloth.prototype);
+  get model() {
+    return this._model
+  }
 
-    Cloth.prototype.addClothes = function(clothes, collection) {
-        collection.forEach(
-            function (cloth) {
-                clothes.push(cloth)
-            }
-        )
-    }
+  set size(value) {
+    this._size = value
+  }
 
-    Jeans.prototype.sortByPrice = function(clothes, price) {
-        var cheap = clothes.filter(function (cloth) {
-            return this.price < price;
-        });
-    
-        var expensive = clothes.filter(function (cloth, price) {
-            return this.price >= price;
-        });
-        
-        var sortedByPrice = {
-            cheap: cheap,
-            expensive: expensive
-        };
-        return sortedByPrice
-    }
-})();
+  get size() {
+    return this._size
+  }
+
+  set forMen(value) {
+    this._forMen = value
+  }
+
+  get forMen() {
+    return this._forMen
+  }
+
+  set price(value) {
+    this._price = value
+  }
+
+  get price() {
+    this._price
+  }
+
+  set colors(value) {
+    this._colors = value
+  }
+
+  get colors() {
+    this._colors
+  }
+
+  set outlet(value) {
+    this._outlet = value
+  }
+
+  get outlet() {
+    this._outlet
+  }
+}
+
+let cloth1 = new Jeans('uuid4()', 'jeans', 'slim', 28, false, 270, ['dark indigo', 'light wash blue'], false)
+
+let cloth2 = new Jeans('uuid4()', 'jeans', 'skinny', 29, false, 190, ['dark indigo', 'white'], true)
+
+let cloth3 = new Jeans('uuid4()', 'jeans', 'bootcut', 30, false, 250, ['light wash blue'], false)
+
+let cloth4 = new Jeans('uuid4()', 'jeans', 'relaxed', 31, true, 200, ['navy blue', 'grey'], true)
+
+let cloth5 = new Jeans('uuid4()', 'jeans', 'loose', 32, true, 280, ['grey', 'white'], false)
+
+let cloth6 = new Jeans('uuid4()', 'jeans', 'straight', 33, true, 220, ['navy blue'], true)
+
+let jeans = {}
+
+Clothes.addClothes(jeans, [cloth1, cloth2, cloth3, cloth4, cloth5, cloth6])
+
+console.log(jeans)
+
+//     var jeans = [];
+
+//     Jeans.prototype = Object.create(Cloth.prototype);
+
+//     Cloth.prototype.addClothes = function(clothes, collection) {
+//         collection.forEach(
+//             function (cloth) {
+//                 clothes.push(cloth)
+//             }
+//         )
+//     }
+
+//     Jeans.prototype.sortByPrice = function(clothes, price) {
+//         var cheap = clothes.filter(function (cloth) {
+//             return this.price < price;
+//         });
+
+//         var expensive = clothes.filter(function (cloth, price) {
+//             return this.price >= price;
+//         });
+
+//         var sortedByPrice = {
+//             cheap: cheap,
+//             expensive: expensive
+//         };
+//         return sortedByPrice
+//     }
+// })();

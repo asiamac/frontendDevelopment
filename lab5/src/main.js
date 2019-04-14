@@ -93,49 +93,20 @@ class Jeans extends Clothes {
   }
 }
 
-let cloth1 = new Jeans('uuid4()', 'jeans', 'slim', 28, false, 270, ['dark indigo', 'light wash blue'], false)
+let cloth1 = new Jeans(uuid4(), 'jeans', 'slim', 28, false, 270, ['dark indigo', 'light wash blue'], false)
 
-let cloth2 = new Jeans('uuid4()', 'jeans', 'skinny', 29, false, 190, ['dark indigo', 'white'], true)
+let cloth2 = new Jeans(uuid4(), 'jeans', 'skinny', 29, false, 190, ['dark indigo', 'white'], true)
 
-let cloth3 = new Jeans('uuid4()', 'jeans', 'bootcut', 30, false, 250, ['light wash blue'], false)
+let cloth3 = new Jeans(uuid4(), 'jeans', 'bootcut', 30, false, 250, ['light wash blue'], false)
 
-let cloth4 = new Jeans('uuid4()', 'jeans', 'relaxed', 31, true, 200, ['navy blue', 'grey'], true)
+let cloth4 = new Jeans(uuid4(), 'jeans', 'relaxed', 31, true, 200, ['navy blue', 'grey'], true)
 
-let cloth5 = new Jeans('uuid4()', 'jeans', 'loose', 32, true, 280, ['grey', 'white'], false)
+let cloth5 = new Jeans(uuid4(), 'jeans', 'loose', 32, true, 280, ['grey', 'white'], false)
 
-let cloth6 = new Jeans('uuid4()', 'jeans', 'straight', 33, true, 220, ['navy blue'], true)
+let cloth6 = new Jeans(uuid4(), 'jeans', 'straight', 33, true, 220, ['navy blue'], true)
 
 let jeans = {}
 
 Clothes.addClothes(jeans, [cloth1, cloth2, cloth3, cloth4, cloth5, cloth6])
 
 console.log(jeans)
-
-//     var jeans = [];
-
-//     Jeans.prototype = Object.create(Cloth.prototype);
-
-//     Cloth.prototype.addClothes = function(clothes, collection) {
-//         collection.forEach(
-//             function (cloth) {
-//                 clothes.push(cloth)
-//             }
-//         )
-//     }
-
-//     Jeans.prototype.sortByPrice = function(clothes, price) {
-//         var cheap = clothes.filter(function (cloth) {
-//             return this.price < price;
-//         });
-
-//         var expensive = clothes.filter(function (cloth, price) {
-//             return this.price >= price;
-//         });
-
-//         var sortedByPrice = {
-//             cheap: cheap,
-//             expensive: expensive
-//         };
-//         return sortedByPrice
-//     }
-// })();

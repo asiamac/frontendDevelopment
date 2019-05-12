@@ -1,0 +1,15 @@
+{
+  "name": "reactserver",
+  "version": "0.1.0",
+  "private": true,
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.16.4",
+    "nodemon": "^1.19.0",
+    "uuid4": "^1.1.4"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}

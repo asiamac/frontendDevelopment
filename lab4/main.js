@@ -7,8 +7,8 @@ clothes.module = (function() {
   }
 
   function Jeans(id, type, model, size, forMen, price, colors, outlet) {
-    Cloth.call(this, id, type)
-    ;(this.model = model),
+    Cloth.call(this, id, type);
+      (this.model = model),
       (this.size = size),
       (this.forMen = forMen),
       (this.price = price),

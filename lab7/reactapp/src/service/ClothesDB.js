@@ -80,3 +80,5 @@ const clothes = [
     }
   }
 ]
+
+export default clothes

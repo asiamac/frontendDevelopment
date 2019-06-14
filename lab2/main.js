@@ -1,4 +1,4 @@
-var uuid4 = require('uuid4')
+var uuid4 = require('uuid4');
 
 var cloth1 = {
     id: uuid4(),
@@ -97,12 +97,12 @@ function addClothes(clothes, collection) {
 function sortByPrice(clothes, price) {
     var cheap = clothes.filter(function (cloth) {
         return cloth.price < this.price;
-    }, {price: price});
+    }, { price: price });
 
     var expensive = clothes.filter(function (cloth, price) {
         return cloth.price >= this.price;
-    }, {price: price});
-    
+    }, { price: price });
+
     var sortedByPrice = {
         cheap: cheap,
         expensive: expensive
@@ -113,7 +113,7 @@ function sortByPrice(clothes, price) {
 function findByPrice(clothes, priceMin, priceMax) {
     return clothes.filter(function (cloth) {
         return cloth.price >= this.priceMin && cloth.price <= this.priceMax
-    }, {priceMin: priceMin, priceMax: priceMax})
+    }, { priceMin: priceMin, priceMax: priceMax })
 }
 
 function findByPrice2(clothes, priceMin, priceMax) {
@@ -123,17 +123,17 @@ function findByPrice2(clothes, priceMin, priceMax) {
 }
 
 function updateClothes(clothes, id, key, value) {
-    var foundItem = clothes.find(function(cloth) {
+    var foundItem = clothes.find(function (cloth) {
         return cloth.id === this.id
-    }, {id: id});
+    }, { id: id });
 
     foundItem[key] = value;
 }
 
 function deleteClothes(clothes, id) {
-    return clothes.filter(function(cloth) {
+    return clothes.filter(function (cloth) {
         return cloth.id !== this.id
-    }, {id: id})
+    }, { id: id })
 }
 
 addClothes(jeans, [cloth1, cloth2, cloth3, cloth4, cloth5, cloth6]);

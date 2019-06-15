@@ -10,7 +10,10 @@ const prices = [];
 const models = [];
 const outlets = [];
 
-app.get('/api/', (req, res) => res.send('Clothes API'));
+
+app.get('/api/', (req, res) => {
+  res.send('Clothes API');
+});
 
 app.get('/api/clothes/prices', (req, res) => {
   res.statusCode = 200;
@@ -49,6 +52,13 @@ app.post('/api/clothes/outlets', (req, res) => {
 
   res.statusCode = 201;
   res.send({ message: 'Outlet information added to database' });
+});
+
+app.use((req, res, next) => {
+    res.append('Access-Control-Allow-Origin', ['http://localhost:3000']);
+    res.append('Access-Control-Allow-Methods', 'GET,POST');
+    res.append('Access-Control-Allow-Headers', 'Content-Type');
+    next();
 });
 
 // eslint-disable-next-line no-console

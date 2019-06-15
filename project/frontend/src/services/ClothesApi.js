@@ -22,5 +22,13 @@ export const addCloth = async (cloth) => {
 }
 
 export const getClothes = async () => {
-  return await axios.get(`${url}/api/clothes`);
+  return (await axios.get(`${url}/api/clothes`)).data;
+}
+
+export const getClothesSummary = async () => {
+  return (await axios.get(`${url}/api/clothes/summary`)).data;
+}
+
+export const getClothDetails = async (id) => {
+  return (await axios.get(`${url}/api/clothes/details/${id}`)).data;
 }

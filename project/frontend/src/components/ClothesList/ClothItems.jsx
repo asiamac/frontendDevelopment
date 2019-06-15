@@ -4,7 +4,7 @@ class ClothItems extends Component {
   render() {
     const { clothes, showDetails } = this.props;
     const clothesList = clothes.map(cloth => (
-      <li onClick={() => showDetails(clothes.indexOf(cloth))}>
+      <li key={cloth.id} onClick={async () => await showDetails(cloth.id)}>
         {cloth.model} {cloth.type} {cloth.price} PLN
       </li>
     ));

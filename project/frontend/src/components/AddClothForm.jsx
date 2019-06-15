@@ -8,9 +8,9 @@ const colors = ['dark indigo', 'light wash blue', 'white', 'navy blue', 'grey'];
 const AddClothForm = (props) => {
   return (
     <Formik
-      initialValues={{ uuid: '', type: '', model: '', size: '', forMen: false, price: '', outlet: false }}
+      initialValues={{ id: '', type: '', model: '', size: '', forMen: false, price: '', outlet: false }}
       onSubmit={async (values, { setSubmitting }) => {
-        values.uuid = uuid4();
+        values.id = uuid4();
 
         try {
           await addCloth(values);

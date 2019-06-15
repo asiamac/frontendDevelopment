@@ -6,8 +6,14 @@ const port = 4000;
 
 app.use(bodyParser.json());
 
-const clothes = [];
+app.use((req, res, next) => {
+  res.append('Access-Control-Allow-Origin', ['http://localhost:3000']);
+  res.append('Access-Control-Allow-Methods', 'GET,POST');
+  res.append('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
 
+const clothes = [];
 
 app.get('/api/', (req, res) => {
   res.send('Clothes API');
@@ -25,11 +31,36 @@ app.post('/api/clothes', (req, res) => {
   res.send({ message: 'Cloth added to database' });
 });
 
-app.use((req, res, next) => {
-    res.append('Access-Control-Allow-Origin', ['http://localhost:3000']);
-    res.append('Access-Control-Allow-Methods', 'GET,POST');
-    res.append('Access-Control-Allow-Headers', 'Content-Type');
-    next();
+app.get('/api/clothes/summary', (req, res) => {
+  const clothesSummary = clothes.map((cloth) => ({
+    id: cloth.id,
+    model: cloth.model,
+    price: cloth.price,
+    type: cloth.type
+  }));
+
+  res.statusCode = 200;
+  res.send(clothesSummary);
+});
+
+app.get('/api/clothes/details/:id', (req, res) => {
+  const cloth = clothes.find((cloth) => cloth.id === req.params.id);
+
+  if (!cloth) {
+    res.statusCode = 204;
+    res.send();
+
+    return;
+  }
+
+  const clothDetails = {
+    forMen: cloth.forMen,
+    outlet: cloth.outlet,
+    size: cloth.size
+  };
+
+  res.statusCode = 200;
+  res.send(clothDetails);
 });
 
 // eslint-disable-next-line no-console

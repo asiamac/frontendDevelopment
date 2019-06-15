@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import axios from 'axios'
+import { getClothesSummary, getClothDetails } from '../../services/ClothesApi';
 
 import ClothesDetails from './ClothesDetails'
 import ClothItems from './ClothItems'
@@ -10,28 +10,31 @@ class ClothesList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      clothes: []
+      clothes: null,
+      details: null
     };
   }
 
-  componentDidMount() {
-    this.fetchClothes()
+  async componentDidMount() {
+    await this.fetchClothes();
   }
 
   async fetchClothes() {
-    const response = await axios.get('');
-
-    this.setState({ clothes: response.clothes });
+    this.setState({ clothes: await getClothesSummary() });
   }
 
-  showDetails = cloth => console.log(cloth)
+  showDetails = async (id) => {
+    this.setState({ details: await getClothDetails(id) });
+  }
 
   render() {
+    const { clothes, details } = this.state;
+
     return (
       <div>
         <ListTitle />
-        {/* <ClothItems /> */}
-        <ClothesDetails />
+        { clothes && <ClothItems clothes={clothes} showDetails={this.showDetails} /> }
+        { details && <ClothesDetails size={details.size} forMen={details.forMen} outlet={details.outlet} /> }
       </div>
     );
   };

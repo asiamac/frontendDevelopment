@@ -6,49 +6,23 @@ const port = 4000;
 
 app.use(bodyParser.json());
 
-const prices = [];
-const models = [];
-const outlets = [];
+const clothes = [];
 
 
 app.get('/api/', (req, res) => {
   res.send('Clothes API');
 });
 
-app.get('/api/clothes/prices', (req, res) => {
+app.get('/api/clothes', (req, res) => {
   res.statusCode = 200;
-  res.send(prices);
+  res.send(clothes);
 });
 
-app.post('/api/clothes/prices', (req, res) => {
-  prices.push(req.body);
+app.post('/api/clothes', (req, res) => {
+  clothes.push(req.body);
 
   res.statusCode = 201;
-  res.send({ message: 'Price added to database' });
-});
-
-app.get('/api/clothes/models', (req, res) => {
-  res.statusCode = 200;
-  res.send(models);
-});
-
-app.post('/api/clothes/models', (req, res) => {
-  models.push(req.body);
-
-  res.statusCode = 201;
-  res.send({ message: 'Model added to database' });
-});
-
-app.get('/api/clothes/outlets', (req, res) => {
-  res.statusCode = 200;
-  res.send(outlets);
-});
-
-app.post('/api/clothes/outlets', (req, res) => {
-  outlets.push(req.body);
-
-  res.statusCode = 201;
-  res.send({ message: 'Outlet information added to database' });
+  res.send({ message: 'Cloth added to database' });
 });
 
 app.use((req, res, next) => {

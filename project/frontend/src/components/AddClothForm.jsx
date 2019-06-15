@@ -1,18 +1,19 @@
 import React from 'react';
 import uuid4 from 'uuid';
 import { Formik } from 'formik';
-import { addClothPrice } from '../services/ClothesApi';
+import { addCloth } from '../services/ClothesApi';
+
+const colors = ['dark indigo', 'light wash blue', 'white', 'navy blue', 'grey'];
 
 const AddClothForm = (props) => {
   return (
     <Formik
-      initialValues={{ uuid: '', type: '', model: '', size: '', forMen: false, price: '' }}
+      initialValues={{ uuid: '', type: '', model: '', size: '', forMen: false, price: '', outlet: false }}
       onSubmit={async (values, { setSubmitting }) => {
         values.uuid = uuid4();
 
         try {
-          alert(JSON.stringify(values, null, 2));
-          await addClothPrice(values);
+          await addCloth(values);
         } catch (error) {
           throw error;
         } finally {
@@ -65,9 +66,8 @@ const AddClothForm = (props) => {
             <label htmlFor="forMen" style={{ display: 'block' }}>For men?</label>
             <input
               id="forMen"
-              placeholder="enter size..."
               type="checkbox"
-              value={values.size}
+              value={values.forMen}
               onChange={handleChange}
               onBlur={handleBlur}
             />
@@ -83,6 +83,17 @@ const AddClothForm = (props) => {
               onChange={handleChange}
               onBlur={handleBlur}
             />
+
+            <label htmlFor="outlet" style={{ display: 'block' }}>Outlet?</label>
+            <input
+              id="outlet"
+              type="checkbox"
+              value={values.outlet}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+
+            <br />
 
             <button
               type="button"

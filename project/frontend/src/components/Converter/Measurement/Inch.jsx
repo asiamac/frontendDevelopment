@@ -1,11 +1,6 @@
 import React, { Component } from 'react'
 
 class Inch extends Component {
-
-  constructor(props) {
-    super(props);
-  }
-
   handleChange = (e) => {
     this.props.onInchChange(e.target.value);
   }

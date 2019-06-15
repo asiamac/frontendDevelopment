@@ -6,10 +6,8 @@ import Dollar from './Dollar';
 import PLN from './PLN';
 
 class Cash extends Component {
-
   constructor(props) {
     super(props);
-
     this.state = {
       dollar: '',
       pln: '',

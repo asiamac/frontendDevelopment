@@ -1,11 +1,6 @@
 import React, { Component } from 'react'
 
 class Centimeter extends Component {
-
-  constructor(props) {
-    super(props);
-  }
-
   handleChange = (e) => {
     this.props.onCentimeterChange(e.target.value);
   }

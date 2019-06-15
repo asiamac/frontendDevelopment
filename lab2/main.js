@@ -96,12 +96,12 @@ function addClothes(clothes, collection) {
 
 function sortByPrice(clothes, price) {
     var cheap = clothes.filter(function (cloth) {
-        return cloth.price < this.price;
-    }, { price: price });
+        return cloth.price < price;
+    });
 
     var expensive = clothes.filter(function (cloth, price) {
-        return cloth.price >= this.price;
-    }, { price: price });
+        return cloth.price >= price;
+    });
 
     var sortedByPrice = {
         cheap: cheap,
@@ -110,13 +110,13 @@ function sortByPrice(clothes, price) {
     return sortedByPrice
 }
 
-function findByPrice(clothes, priceMin, priceMax) {
-    return clothes.filter(function (cloth) {
-        return cloth.price >= this.priceMin && cloth.price <= this.priceMax
-    }, { priceMin: priceMin, priceMax: priceMax })
-}
+// function findByPrice(clothes, priceMin, priceMax) {
+//     return clothes.filter(function (cloth) {
+//         return cloth.price >= this.priceMin && cloth.price <= this.priceMax
+//     }, { priceMin: priceMin, priceMax: priceMax })
+// }
 
-function findByPrice2(clothes, priceMin, priceMax) {
+function findByPrice(clothes, priceMin, priceMax) {
     return clothes.filter(function (cloth) {
         return cloth.price >= priceMin && cloth.price <= priceMax
     })
@@ -124,20 +124,23 @@ function findByPrice2(clothes, priceMin, priceMax) {
 
 function updateClothes(clothes, id, key, value) {
     var foundItem = clothes.find(function (cloth) {
-        return cloth.id === this.id
-    }, { id: id });
+        return cloth.id === id
+    });
 
     foundItem[key] = value;
 }
 
 function deleteClothes(clothes, id) {
     return clothes.filter(function (cloth) {
-        return cloth.id !== this.id
-    }, { id: id })
+        return cloth.id !== id
+    })
 }
 
 addClothes(jeans, [cloth1, cloth2, cloth3, cloth4, cloth5, cloth6]);
-sortByPrice(jeans, 250);
-console.log(findByPrice2(jeans, 210, 260));
+console.log('jeans after add', jeans)
+console.log(sortByPrice(jeans, 250));
+console.log('findByPrice', findByPrice(jeans, 210, 260));
 updateClothes(jeans, cloth5.id, 'price', 320);
+console.log('jeans after update', jeans)
 jeans = deleteClothes(jeans, cloth3.id);
+console.log('jeans after delete', jeans)

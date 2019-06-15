@@ -32,3 +32,7 @@ export const getClothesSummary = async () => {
 export const getClothDetails = async (id) => {
   return (await axios.get(`${url}/api/clothes/details/${id}`)).data;
 }
+
+export const deleteCloth = async (id) => {
+  return (await axios.delete(`${url}/api/clothes/${id}`));
+}

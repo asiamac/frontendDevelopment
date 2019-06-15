@@ -3,7 +3,6 @@ import uuid4 from 'uuid';
 import { Formik } from 'formik';
 import { addCloth } from '../services/ClothesApi';
 
-const colors = ['dark indigo', 'light wash blue', 'white', 'navy blue', 'grey'];
 
 const AddClothForm = (props) => {
   return (

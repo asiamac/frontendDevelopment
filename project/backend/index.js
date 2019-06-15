@@ -3,17 +3,19 @@ const bodyParser = require('body-parser');
 
 const app = express();
 const port = 4000;
+const minArrayIndex = 0;
+const removeOneElement = 1;
 
 app.use(bodyParser.json());
 
 app.use((req, res, next) => {
   res.append('Access-Control-Allow-Origin', ['http://localhost:3000']);
-  res.append('Access-Control-Allow-Methods', 'GET,POST');
+  res.append('Access-Control-Allow-Methods', 'GET,POST,DELETE');
   res.append('Access-Control-Allow-Headers', 'Content-Type');
   next();
 });
 
-const clothes = [];
+let clothes = [];
 
 app.get('/api/', (req, res) => {
   res.send('Clothes API');
@@ -61,6 +63,22 @@ app.get('/api/clothes/details/:id', (req, res) => {
 
   res.statusCode = 200;
   res.send(clothDetails);
+});
+
+app.delete('/api/clothes/:id', (req, res) => {
+  const cloth = clothes.findIndex((cloth) => cloth.id === req.params.id);
+
+  if (cloth < minArrayIndex) {
+    res.statusCode = 204;
+    res.send();
+
+    return;
+  }
+
+  clothes.splice(cloth, removeOneElement);
+
+  res.statusCode = 202;
+  res.send();
 });
 
 // eslint-disable-next-line no-console

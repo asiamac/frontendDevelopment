@@ -110,12 +110,6 @@ function sortByPrice(clothes, price) {
     return sortedByPrice
 }
 
-// function findByPrice(clothes, priceMin, priceMax) {
-//     return clothes.filter(function (cloth) {
-//         return cloth.price >= this.priceMin && cloth.price <= this.priceMax
-//     }, { priceMin: priceMin, priceMax: priceMax })
-// }
-
 function findByPrice(clothes, priceMin, priceMax) {
     return clothes.filter(function (cloth) {
         return cloth.price >= priceMin && cloth.price <= priceMax

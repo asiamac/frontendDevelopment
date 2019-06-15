@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Cash from './Cash';
-import Measurement from './Measurement';
+import Cash from './Cash/Cash';
+import Measurement from './Measurement/Measurement';
 
 class Converter extends Component {
 

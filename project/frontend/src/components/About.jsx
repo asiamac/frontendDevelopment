@@ -5,8 +5,9 @@ class About extends Component {
     return (
       <div>
         <div>Store clothes database</div>
-        <a href="https://github.com/asiamac/frontendDevelopment">Repository</a>
-      </div>
+        <div>Joanna Maćkowiak 260790</div>
+        <a href="https://github.com/asiamac/frontendDevelopment">project repository</a>
+      </div >
     );
   }
 }

@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+
+import axios from 'axios';
+
 import Dollar from './Dollar';
 import PLN from './PLN';
 
@@ -8,19 +11,28 @@ class Cash extends Component {
     super(props);
 
     this.state = {
-      dollar: 1,
-      pln: 2
+      dollar: '',
+      pln: '',
+      rate: ''
     };
   }
 
-  rate = 3.83439994;
+  componentDidMount() {
+    this.fetchDollarRate();
+  }
+
+  async fetchDollarRate() {
+    await axios.get('http://api.nbp.pl/api/exchangerates/rates/c/usd/?format=json').then(response => {
+      this.setState({ rate: response.rates[0].ask });
+    });
+  }
 
   handleDollarChange = (value) => {
-    this.setState({ dollar: value, pln: value * this.rate });
+    this.setState({ dollar: value, pln: value * this.state.rate });
   }
 
   handlePLNChange = (value) => {
-    this.setState({ dollar: value / this.rate, pln: value });
+    this.setState({ dollar: value / this.state.rate, pln: value });
   }
 
   render() {

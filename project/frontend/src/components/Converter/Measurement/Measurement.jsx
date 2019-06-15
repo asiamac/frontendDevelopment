@@ -8,7 +8,7 @@ class Measurement extends Component {
     super(props);
 
     this.state = {
-      inch: 1,
+      inch: null,
       cm: null
     };
   }

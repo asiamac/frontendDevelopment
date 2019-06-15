@@ -30,7 +30,7 @@ class ClothesList extends Component {
     return (
       <div>
         <ListTitle />
-        <ClothItems />
+        {/* <ClothItems /> */}
         <ClothesDetails />
       </div>
     );

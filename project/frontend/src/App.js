@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
-import Converter from './components/Converter'
+import ClothesList from './components/ClothesList/ClothesList'
 
 function App() {
   return (
-    <div className="App"><Converter /></div>
+    <div className="App"><ClothesList /></div>
   );
 }
 

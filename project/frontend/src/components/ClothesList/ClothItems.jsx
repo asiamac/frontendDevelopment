@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 
 class ClothItems extends Component {
   render() {
-    const clothesList = this.props.clothes.map(cloth => (
-      <li onClick={() => this.props.showDetails(this.props.clothes.indexOf(cloth))}>
+    const { clothes, showDetails } = this.props;
+    const clothesList = clothes.map(cloth => (
+      <li onClick={() => showDetails(clothes.indexOf(cloth))}>
         {cloth.model} {cloth.type} {cloth.price} PLN
       </li>
     ));

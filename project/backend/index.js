@@ -21,8 +21,7 @@ app.get('/api/clothes/prices', (req, res) => {
 });
 
 app.post('/api/clothes/prices', (req, res) => {
-  const price = req.body.price;
-  prices.push(price);
+  prices.push(req.body);
 
   res.statusCode = 201;
   res.send({ message: 'Price added to database' });
@@ -34,8 +33,7 @@ app.get('/api/clothes/models', (req, res) => {
 });
 
 app.post('/api/clothes/models', (req, res) => {
-  const model = req.body.model;
-  models.push(model);
+  models.push(req.body);
 
   res.statusCode = 201;
   res.send({ message: 'Model added to database' });
@@ -47,8 +45,7 @@ app.get('/api/clothes/outlets', (req, res) => {
 });
 
 app.post('/api/clothes/outlets', (req, res) => {
-  const outlet = req.body.outlet;
-  outlets.push(outlet);
+  outlets.push(req.body);
 
   res.statusCode = 201;
   res.send({ message: 'Outlet information added to database' });

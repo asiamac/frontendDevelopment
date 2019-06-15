@@ -22,9 +22,9 @@ class Cash extends Component {
   }
 
   async fetchDollarRate() {
-    await axios.get('http://api.nbp.pl/api/exchangerates/rates/c/usd/?format=json').then(response => {
-      this.setState({ rate: response.rates[0].ask });
-    });
+    const response = await axios.get('http://api.nbp.pl/api/exchangerates/rates/c/usd/?format=json');
+
+    this.setState({ rate: response.data.rates[0].ask });
   }
 
   handleDollarChange = (value) => {

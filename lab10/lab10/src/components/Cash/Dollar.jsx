@@ -1,11 +1,6 @@
 import React, { Component } from 'react'
 
 class Dollar extends Component {
-
-  constructor(props) {
-    super(props);
-  }
-
   handleChange = (e) => {
     this.props.onDollarChange(e.target.value);
   }

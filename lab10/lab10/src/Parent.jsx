@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
-import Cash from './Cash';
-import Measurement from './Measurement';
+import Cash from './components/Cash/Cash';
+import Measurement from './components/Measurement/Measurement';
 
 class Parent extends Component {
-
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div>

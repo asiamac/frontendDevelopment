@@ -3,13 +3,11 @@ import Inch from './Inch';
 import Centimeter from './Centimeter';
 
 class Measurement extends Component {
-
   constructor(props) {
     super(props);
-
     this.state = {
-      inch: 1,
-      cm: null
+      inch: '',
+      cm: ''
     };
   }
 

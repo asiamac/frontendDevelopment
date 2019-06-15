@@ -1,11 +1,6 @@
 import React, { Component } from 'react'
 
 class PLN extends Component {
-
-  constructor(props) {
-    super(props);
-  }
-
   handleChange = (e) => {
     this.props.onPLNChange(e.target.value);
   }

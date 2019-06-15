@@ -1,11 +1,10 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Parent from './components/Parent'
+import Converter from './components/Converter/Converter'
 
 function App() {
   return (
-    <div className="App"><Parent /></div>
+    <div className="App"><Converter /></div>
   );
 }
 

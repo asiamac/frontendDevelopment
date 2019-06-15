@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Cash from './Cash';
 import Measurement from './Measurement';
 
-class Parent extends Component {
+class Converter extends Component {
 
   constructor(props) {
     super(props);
@@ -18,4 +18,4 @@ class Parent extends Component {
   }
 }
 
-export default Parent;
+export default Converter;

@@ -8,9 +8,7 @@ class Dollar extends Component {
 
   handleChange = (e) => {
     this.props.onDollarChange(e.target.value);
-
-  };
-
+  }
 
   render() {
     const cash = this.props.dollars;
@@ -23,4 +21,4 @@ class Dollar extends Component {
   }
 }
 
-export default Dollar
+export default Dollar;

@@ -8,8 +8,7 @@ class PLN extends Component {
 
   handleChange = (e) => {
     this.props.onPLNChange(e.target.value);
-
-  };
+  }
 
   render() {
     const cash = this.props.plns;
@@ -22,4 +21,4 @@ class PLN extends Component {
   }
 }
 
-export default PLN
+export default PLN;

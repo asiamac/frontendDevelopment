@@ -23,7 +23,7 @@ class Clothes {
   findByPrice = (priceMin, priceMax) => {
     return this.clothesCollection.filter((cloth) => cloth.price >= priceMin && cloth.price <= priceMax);
   }
-  
+
   showClothes = clothes => {
     clothes.forEach(cloth => {
       console.log("id: ", cloth.id)
@@ -106,13 +106,9 @@ var cloth6 = new Trouses(uuid4(), 'shorts', 'straight', 33, true, 220, ['navy bl
 clothes = new Clothes();
 
 clothes.addClothes([cloth1, cloth2, cloth3, cloth4, cloth5, cloth6])
-// clothes.module.showClothes();
-// clothes.module.groupByPrice(250);
 clothes.showByPrice(210, 260);
 clothes.updateClothes(cloth5.id, 'price', 320);
 clothes.showClothes();
-// showClothesWithPrice(jeans, 'jeans after update');
 clothes.deleteClothes(cloth3.id);
-// clothes.module.showClothes();
-// showClothes(jeans, 'jeans after delete');
 clothes.sortByPrice();
+clothes.getExpensiveClothes(250);

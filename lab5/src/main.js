@@ -1,112 +1,118 @@
 const uuid4 = require('uuid4')
 
+let clothes = {};
+
 class Clothes {
-  constructor(id, type) {
-    this._id = id
-    this._type = type
+  constructor() {
+    this.clothesCollection = [];
   }
 
-  set id(value) {
-    this._id = value
+  groupByPrice = (price) => {
+    const cheap = this.clothesCollection.filter(cloth => cloth.price < price);
+
+    const expensive = this.clothesCollection.filter(cloth => cloth.price >= price);
+
+    const groupedByPrice = {
+      cheap: cheap,
+      expensive: expensive
+    };
+
+    return groupedByPrice;
   }
 
-  get type() {
-    return this._type
+  findByPrice = (priceMin, priceMax) => {
+    return this.clothesCollection.filter((cloth) => cloth.price >= priceMin && cloth.price <= priceMax);
   }
-
-  set type(value) {
-    this._type = value
-  }
-
-  get type() {
-    return this._type
-  }
-
-  addClothes(clothes, collection) {
-    collection.forEach(function(cloth) {
-      clothes.push(cloth)
+  
+  showClothes = clothes => {
+    clothes.forEach(cloth => {
+      console.log("id: ", cloth.id)
+      console.log("type: ", cloth.type)
+      console.log("price: ", cloth.price)
     })
   }
-}
 
-let Skirt = new Clothes(uuid4(), 'Skirt')
+  addClothes = (collection) => collection.forEach(cloth => this.clothesCollection.push(cloth));
 
-console.log(Skirt)
+  updateClothes = (id, key, value) => {
+    const foundItem = this.clothesCollection.find(cloth => cloth.id === id);
 
-class Jeans extends Clothes {
+    foundItem[key] = value;
+  }
+
+  deleteClothes = (id) => {
+    this.clothesCollection = this.clothesCollection.filter(cloth => cloth.id !== id);
+  }
+
+  showByPrice = (priceMin, priceMax) => {
+    this.findByPrice(priceMin, priceMax).map(cloth => cloth.getBasicInformation());
+  }
+
+  sortByPrice = () => {
+    this.clothesCollection.sort(function (a, b) {
+      return a.price - b.price;
+    }).map(function (cloth) {
+      return cloth.getBasicInformation();
+    }).forEach(function (cloth) {
+      console.log(cloth);
+    });
+  }
+
+  getExpensiveClothes = price => {
+    var result = this.groupByPrice(price).expensive;
+    this.showClothes(result);
+    return result;
+  }
+};
+
+class Cloth {
   constructor(id, type, model, size, forMen, price, colors, outlet) {
-    super(id, type),
-      (this._model = model),
-      (this._size = size),
-      (this._forMen = forMen),
-      (this._price = price),
-      (this._colors = colors),
-      (this._outlet = outlet)
+    this.id = id;
+    this.type = type;
+    this.model = model;
+    this.size = size;
+    this.forMen = forMen;
+    this.price = price;
+    this.colors = colors;
+    this.outlet = outlet;
   }
 
-  set model(value) {
-    this._model = value.toLowerCase()
-  }
+  getBasicInformation = () => this.type + ' ' + this.model + ' ' + this.price;
 
-  get model() {
-    return this._model
-  }
+  numberOfColors = () => this.colors.length;
 
-  set size(value) {
-    this._size = value
-  }
-
-  get size() {
-    return this._size
-  }
-
-  set forMen(value) {
-    this._forMen = value
-  }
-
-  get forMen() {
-    return this._forMen
-  }
-
-  set price(value) {
-    this._price = value
-  }
-
-  get price() {
-    this._price
-  }
-
-  set colors(value) {
-    this._colors = value
-  }
-
-  get colors() {
-    this._colors
-  }
-
-  set outlet(value) {
-    this._outlet = value
-  }
-
-  get outlet() {
-    this._outlet
-  }
+  changePrice = newPrice => this.price = newPrice;
 }
 
-let cloth1 = new Jeans(uuid4(), 'jeans', 'slim', 28, false, 270, ['dark indigo', 'light wash blue'], false)
+class Trouses extends Cloth {
+  constructor(id, type, model, size, forMen, price, colors, outlet, lengthCut, lengthSize, waistSize) {
+    super(id, type, model, size, forMen, price, colors, outlet);
 
-let cloth2 = new Jeans(uuid4(), 'jeans', 'skinny', 29, false, 190, ['dark indigo', 'white'], true)
+    this.lengthCut = lengthCut;
+    this.lengthSize = lengthSize;
+    this.waistSize = waistSize;
+  }
 
-let cloth3 = new Jeans(uuid4(), 'jeans', 'bootcut', 30, false, 250, ['light wash blue'], false)
+  getActualLength = () => this.lengthCut * this.lengthSize;
+}
 
-let cloth4 = new Jeans(uuid4(), 'jeans', 'relaxed', 31, true, 200, ['navy blue', 'grey'], true)
+var cloth1 = new Cloth(uuid4(), 'jeans', 'bootcut', 30, false, 250, ['light wash blue'], false);
+var cloth2 = new Cloth(uuid4(), 'chino', 'relaxed', 31, true, 200, ['navy blue', 'grey'], true);
+var cloth3 = new Cloth(uuid4(), 'jeans', 'loose', 32, true, 280, ['grey', 'white'], false);
+var cloth4 = new Trouses(uuid4(), 'jeans', 'slim', 28, false, 270, ['dark indigo', 'light wash blue'], false, 0.75, 30, 27);
+var cloth5 = new Trouses(uuid4(), 'jeans', 'skinny', 29, false, 190, ['dark indigo', 'white'], true, 1, 31, 27);
+var cloth6 = new Trouses(uuid4(), 'shorts', 'straight', 33, true, 220, ['navy blue'], true, 0.5, 32, 34);
 
-let cloth5 = new Jeans(uuid4(), 'jeans', 'loose', 32, true, 280, ['grey', 'white'], false)
+clothes = new Clothes();
 
-let cloth6 = new Jeans(uuid4(), 'jeans', 'straight', 33, true, 220, ['navy blue'], true)
-
-let jeans = {}
-
-Clothes.addClothes(jeans, [cloth1, cloth2, cloth3, cloth4, cloth5, cloth6])
-
-console.log(jeans)
+clothes.addClothes([cloth1, cloth2, cloth3, cloth4, cloth5, cloth6])
+// clothes.module.showClothes();
+// clothes.module.groupByPrice(250);
+clothes.showByPrice(210, 260);
+clothes.updateClothes(cloth5.id, 'price', 320);
+clothes.showClothes();
+// showClothesWithPrice(jeans, 'jeans after update');
+clothes.deleteClothes(cloth3.id);
+// clothes.module.showClothes();
+// showClothes(jeans, 'jeans after delete');
+clothes.sortByPrice();

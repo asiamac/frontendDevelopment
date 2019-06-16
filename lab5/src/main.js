@@ -7,7 +7,7 @@ class Clothes {
     this.clothesCollection = [];
   }
 
-  groupByPrice = (price) => {
+  groupByPrice(price) {
     const cheap = this.clothesCollection.filter(cloth => cloth.price < price);
 
     const expensive = this.clothesCollection.filter(cloth => cloth.price >= price);
@@ -20,11 +20,11 @@ class Clothes {
     return groupedByPrice;
   }
 
-  findByPrice = (priceMin, priceMax) => {
+  findByPrice(priceMin, priceMax) {
     return this.clothesCollection.filter((cloth) => cloth.price >= priceMin && cloth.price <= priceMax);
   }
 
-  showClothes = clothes => {
+  showClothes(clothes) {
     clothes.forEach(cloth => {
       console.log("id: ", cloth.id)
       console.log("type: ", cloth.type)
@@ -32,24 +32,24 @@ class Clothes {
     })
   }
 
-  addClothes = (collection) => collection.forEach(cloth => this.clothesCollection.push(cloth));
+  addClothes(collection) { collection.forEach(cloth => this.clothesCollection.push(cloth)) };
 
-  updateClothes = (id, key, value) => {
+  updateClothes(id, key, value) {
     const foundItem = this.clothesCollection.find(cloth => cloth.id === id);
 
     foundItem[key] = value;
   }
 
-  deleteClothes = (id) => {
+  deleteClothes(id) {
     this.clothesCollection = this.clothesCollection.filter(cloth => cloth.id !== id);
   }
 
-  showByPrice = (priceMin, priceMax) => {
-    this.findByPrice(priceMin, priceMax).map(cloth => cloth.getBasicInformation());
+  showByPrice(priceMin, priceMax) {
+    return this.findByPrice(priceMin, priceMax).map(cloth => cloth.getBasicInformation());
   }
 
-  sortByPrice = () => {
-    this.clothesCollection.sort(function (a, b) {
+  sortByPrice() {
+    this.clothesCollection.sort((a, b) => {
       return a.price - b.price;
     }).map(function (cloth) {
       return cloth.getBasicInformation();
@@ -58,7 +58,7 @@ class Clothes {
     });
   }
 
-  getExpensiveClothes = price => {
+  getExpensiveClothes(price) {
     var result = this.groupByPrice(price).expensive;
     this.showClothes(result);
     return result;
@@ -77,11 +77,11 @@ class Cloth {
     this.outlet = outlet;
   }
 
-  getBasicInformation = () => this.type + ' ' + this.model + ' ' + this.price;
+  getBasicInformation() { return this.type + ' ' + this.model + ' ' + this.price };
 
-  numberOfColors = () => this.colors.length;
+  numberOfColors() { return this.colors.length };
 
-  changePrice = newPrice => this.price = newPrice;
+  changePrice(newPrice) { return this.price = newPrice };
 }
 
 class Trouses extends Cloth {
@@ -93,7 +93,7 @@ class Trouses extends Cloth {
     this.waistSize = waistSize;
   }
 
-  getActualLength = () => this.lengthCut * this.lengthSize;
+  getActualLength() { return this.lengthCut * this.lengthSize };
 }
 
 var cloth1 = new Cloth(uuid4(), 'jeans', 'bootcut', 30, false, 250, ['light wash blue'], false);

@@ -89,12 +89,28 @@ var jeans = [];
 function addClothes(clothes, collection) {
     collection.forEach(
         function (cloth) {
-            clothes.push(cloth)
+            clothes.push(cloth);
         }
     )
 }
 
-function sortByPrice(clothes, price) {
+function showClothes(clothes, message) {
+    clothes.forEach(function (cloth) {
+        console.log(message, cloth.type, cloth.model);
+    })
+}
+
+function showClothesWithPrice(clothes, message) {
+    clothes.forEach(function (cloth) {
+        console.log(message, cloth.type, cloth.model, cloth.price);
+    })
+}
+
+function showClothWithPrice(cloth) {
+    console.log(cloth.type, cloth.model, cloth.price);
+}
+
+function groupByPrice(clothes, price) {
     var cheap = clothes.filter(function (cloth) {
         return cloth.price < price;
     });
@@ -103,22 +119,32 @@ function sortByPrice(clothes, price) {
         return cloth.price >= price;
     });
 
-    var sortedByPrice = {
+    var groupedByPrice = {
         cheap: cheap,
         expensive: expensive
     };
-    return sortedByPrice
+    return groupedByPrice;
+}
+
+function sortByPrice(clothes) {
+    clothes.sort(function (a, b) {
+        return a.price - b.price;
+    }).map(function (cloth) {
+        return cloth.type + cloth.model + cloth.price;
+    })
 }
 
 function findByPrice(clothes, priceMin, priceMax) {
     return clothes.filter(function (cloth) {
-        return cloth.price >= priceMin && cloth.price <= priceMax
+        return cloth.price >= priceMin && cloth.price <= priceMax;
+    }).map(function (cloth) {
+        showClothWithPrice(cloth);
     })
 }
 
 function updateClothes(clothes, id, key, value) {
     var foundItem = clothes.find(function (cloth) {
-        return cloth.id === id
+        return cloth.id === id;
     });
 
     foundItem[key] = value;
@@ -126,15 +152,17 @@ function updateClothes(clothes, id, key, value) {
 
 function deleteClothes(clothes, id) {
     return clothes.filter(function (cloth) {
-        return cloth.id !== id
+        return cloth.id !== id;
     })
 }
 
 addClothes(jeans, [cloth1, cloth2, cloth3, cloth4, cloth5, cloth6]);
-console.log('jeans after add', jeans)
-console.log(sortByPrice(jeans, 250));
-console.log('findByPrice', findByPrice(jeans, 210, 260));
+showClothes(jeans, 'jeans after add');
+console.log(groupByPrice(jeans, 250));
+findByPrice(jeans, 210, 260);
 updateClothes(jeans, cloth5.id, 'price', 320);
-console.log('jeans after update', jeans)
+showClothesWithPrice(jeans, 'jeans after update');
 jeans = deleteClothes(jeans, cloth3.id);
-console.log('jeans after delete', jeans)
+showClothes(jeans, 'jeans after delete');
+sortByPrice(jeans);
+showClothesWithPrice(jeans, 'after sortByPrice');

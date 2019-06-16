@@ -9,7 +9,7 @@ clothes.module = (function () {
       return cloth.price < price;
     });
 
-    var expensive = clothesCollection.filter(function (cloth, price) {
+    var expensive = clothesCollection.filter(function (cloth) {
       return cloth.price >= price;
     });
 
@@ -63,6 +63,10 @@ clothes.module = (function () {
       }).forEach(function (cloth) {
         console.log(cloth);
       });
+    },
+
+    getExpensiveClothes: function (price) {
+      return groupByPrice(price).expensive;
     }
   }
 })();
@@ -115,9 +119,10 @@ clothes.module.addClothes([cloth1, cloth2, cloth3, cloth4, cloth5, cloth6])
 // clothes.module.groupByPrice(250);
 clothes.module.showByPrice(210, 260);
 clothes.module.updateClothes(cloth5.id, 'price', 320);
-clothes.module.showClothes();
+// clothes.module.showClothes();
 // showClothesWithPrice(jeans, 'jeans after update');
 clothes.module.deleteClothes(cloth3.id);
 // clothes.module.showClothes();
 // showClothes(jeans, 'jeans after delete');
 clothes.module.sortByPrice();
+clothes.module.getExpensiveClothes(250);

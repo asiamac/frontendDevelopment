@@ -1,4 +1,4 @@
-const uuid4 = require('uuid4')
+const uuid4 = require('uuid4');
 
 const clothes = [
   {
@@ -8,11 +8,7 @@ const clothes = [
     size: 28,
     forMen: false,
     price: 270,
-    colors: ['dark indigo', 'light wash blue'],
-    outlet: {
-      outlet: false,
-      year: 2019
-    }
+    outlet: false
   },
   {
     id: uuid4(),
@@ -21,11 +17,7 @@ const clothes = [
     size: 29,
     forMen: false,
     price: 190,
-    colors: ['dark indigo', 'white'],
-    outlet: {
-      outlet: true,
-      year: 2018
-    }
+    outlet: true
   },
   {
     id: uuid4(),
@@ -34,11 +26,7 @@ const clothes = [
     size: 30,
     forMen: false,
     price: 250,
-    colors: ['light wash blue'],
-    outlet: {
-      outlet: false,
-      year: 2019
-    }
+    outlet: false
   },
   {
     id: uuid4(),
@@ -47,11 +35,7 @@ const clothes = [
     size: 31,
     forMen: true,
     price: 200,
-    colors: ['navy blue', 'grey'],
-    outlet: {
-      outlet: true,
-      year: 2018
-    }
+    outlet: true
   },
   {
     id: uuid4(),
@@ -60,11 +44,7 @@ const clothes = [
     size: 32,
     forMen: true,
     price: 280,
-    colors: ['grey', 'white'],
-    outlet: {
-      outlet: false,
-      year: 2019
-    }
+    outlet: false
   },
   {
     id: uuid4(),
@@ -73,12 +53,8 @@ const clothes = [
     size: 33,
     forMen: true,
     price: 220,
-    colors: ['navy blue'],
-    outlet: {
-      outlet: false,
-      year: 2019
-    }
+    outlet: false
   }
 ]
 
-export default clothes
+export default clothes;

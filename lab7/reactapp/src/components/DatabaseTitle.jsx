@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 
 class DatabaseTitle extends Component {
   render() {
-    return <h1>Clothes database</h1>
-  }
+    return <h1>Clothes database</h1>;
+  };
 }
 
-export default DatabaseTitle
+export default DatabaseTitle;

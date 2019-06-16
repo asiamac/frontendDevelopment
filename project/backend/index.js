@@ -94,6 +94,7 @@ app.get('/api/clothes/details/:id', (req, res) => {
 
   const clothDetails = {
     forMen: cloth.forMen,
+    id: cloth.id,
     outlet: cloth.outlet,
     size: cloth.size
   };

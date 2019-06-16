@@ -30,6 +30,9 @@ class ClothesList extends Component {
   deleteCloth = async (id) => {
     await deleteCloth(id);
     this.setState({ clothes: await getClothesSummary() });
+    if (this.state.details !== null && id === this.state.details.id) (
+      this.setState({ details: null })
+    )
   }
 
   render() {
@@ -38,8 +41,8 @@ class ClothesList extends Component {
     return (
       <div>
         <ListTitle />
-        { clothes && <ClothItems clothes={clothes} showDetails={this.showDetails} deleteCloth={this.deleteCloth} /> }
-        { details && <ClothesDetails size={details.size} forMen={details.forMen} outlet={details.outlet} /> }
+        {clothes && <ClothItems clothes={clothes} showDetails={this.showDetails} deleteCloth={this.deleteCloth} />}
+        {details && <ClothesDetails size={details.size} forMen={details.forMen} outlet={details.outlet} />}
       </div>
     );
   };

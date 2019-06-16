@@ -28,9 +28,9 @@ clothes.module = (function () {
 
   function showClothes(clothes) {
     clothes.forEach(function (cloth) {
-      console.log("id: ", cloth.id)
-      console.log("type: ", cloth.type)
-      console.log("price: ", cloth.price)
+      console.log("id: ", cloth.id);
+      console.log("type: ", cloth.type);
+      console.log("price: ", cloth.price);
     })
   }
 
@@ -114,7 +114,7 @@ Cloth.prototype = {
 Trouses.prototype = Object.create(Cloth.prototype);
 Trouses.prototype.constructor = Trouses;
 Trouses.prototype.getActualLength = function () {
-  return this.lengthCut * this.lengthSize
+  return this.lengthCut * this.lengthSize;
 }
 
 var cloth1 = new Cloth(uuid4(), 'jeans', 'bootcut', 30, false, 250, ['light wash blue'], false);
@@ -124,15 +124,12 @@ var cloth4 = new Trouses(uuid4(), 'jeans', 'slim', 28, false, 270, ['dark indigo
 var cloth5 = new Trouses(uuid4(), 'jeans', 'skinny', 29, false, 190, ['dark indigo', 'white'], true, 1, 31, 27);
 var cloth6 = new Trouses(uuid4(), 'shorts', 'straight', 33, true, 220, ['navy blue'], true, 0.5, 32, 34);
 
-clothes.module.addClothes([cloth1, cloth2, cloth3, cloth4, cloth5, cloth6])
-// clothes.module.showClothes();
-// clothes.module.groupByPrice(250);
+clothes.module.addClothes([cloth1, cloth2, cloth3, cloth4, cloth5, cloth6]);
+clothes.module.showClothes();
 clothes.module.showByPrice(210, 260);
 clothes.module.updateClothes(cloth5.id, 'price', 320);
-// clothes.module.showClothes();
-// showClothesWithPrice(jeans, 'jeans after update');
+clothes.module.showClothes();
 clothes.module.deleteClothes(cloth3.id);
-// clothes.module.showClothes();
-// showClothes(jeans, 'jeans after delete');
+clothes.module.showClothes();
 clothes.module.sortByPrice();
 clothes.module.getExpensiveClothes(250);

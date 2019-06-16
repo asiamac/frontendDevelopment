@@ -26,6 +26,14 @@ clothes.module = (function () {
     });
   }
 
+  function showClothes(clothes) {
+    clothes.forEach(function (cloth) {
+      console.log("id: ", cloth.id)
+      console.log("type: ", cloth.type)
+      console.log("price: ", cloth.price)
+    })
+  }
+
   return {
     addClothes: function (collection) {
       collection.forEach(
@@ -66,7 +74,9 @@ clothes.module = (function () {
     },
 
     getExpensiveClothes: function (price) {
-      return groupByPrice(price).expensive;
+      var result = groupByPrice(price).expensive;
+      showClothes(result);
+      return result;
     }
   }
 })();

@@ -114,10 +114,10 @@ clothes.module.addClothes([cloth1, cloth2, cloth3, cloth4, cloth5, cloth6])
 // clothes.module.showClothes();
 // clothes.module.groupByPrice(250);
 clothes.module.showByPrice(210, 260);
-// clothes.module.updateClothes(cloth5.id, 'price', 320);
-// clothes.module.showClothes();
+clothes.module.updateClothes(cloth5.id, 'price', 320);
+clothes.module.showClothes();
 // showClothesWithPrice(jeans, 'jeans after update');
-// clothes.module.deleteClothes(cloth3.id);
+clothes.module.deleteClothes(cloth3.id);
 // clothes.module.showClothes();
 // showClothes(jeans, 'jeans after delete');
 clothes.module.sortByPrice();

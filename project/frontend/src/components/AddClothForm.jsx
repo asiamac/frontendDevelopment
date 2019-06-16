@@ -1,18 +1,36 @@
 import React from 'react';
 import uuid4 from 'uuid';
 import { Formik } from 'formik';
-import { addCloth } from '../services/ClothesApi';
+import { addCloth, updateCloth } from '../services/ClothesApi';
 
 
 const AddClothForm = (props) => {
+  let { initialValues, updateCallback } = props;
+
+  let update = false;
+
+  if (!initialValues) {
+    initialValues = { id: '', type: '', model: '', size: '', forMen: false, price: '', outlet: false };
+  } else {
+    update = true;
+  }
+
   return (
     <Formik
-      initialValues={{ id: '', type: '', model: '', size: '', forMen: false, price: '', outlet: false }}
+      initialValues={initialValues}
       onSubmit={async (values, { setSubmitting }) => {
-        values.id = uuid4();
-
         try {
-          await addCloth(values);
+          if (update) {
+            await updateCloth(values);
+
+            if (updateCallback) {
+              await updateCallback();
+            }
+          } else {
+            values.id = uuid4();
+
+            await addCloth(values);
+          }
         } catch (error) {
           throw error;
         } finally {

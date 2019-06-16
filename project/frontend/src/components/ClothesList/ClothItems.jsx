@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 
 class ClothItems extends Component {
   render() {
-    const { clothes, showDetails, deleteCloth } = this.props;
+    const { clothes, showDetails, deleteCloth, updateCloth } = this.props;
     const clothesList = clothes.map(cloth => (
       <div key={cloth.id}>
         <li onClick={async () => await showDetails(cloth.id)}>
           {cloth.model} {cloth.type} {cloth.price} PLN
         </li>
         <button onClick={async () => await deleteCloth(cloth.id)}>Delete</button>
+        <button onClick={() => updateCloth(cloth)}>Update</button>
       </div>
     ));
 

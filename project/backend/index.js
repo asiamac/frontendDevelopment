@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 
 app.use((req, res, next) => {
   res.append('Access-Control-Allow-Origin', ['http://localhost:3000']);
-  res.append('Access-Control-Allow-Methods', 'GET,POST,DELETE');
+  res.append('Access-Control-Allow-Methods', 'GET,POST,DELETE,PUT');
   res.append('Access-Control-Allow-Headers', 'Content-Type');
   next();
 });
@@ -116,6 +116,22 @@ app.delete('/api/clothes/:id', (req, res) => {
   clothes.splice(cloth, removeOneElement);
 
   res.statusCode = 202;
+  res.send();
+});
+
+app.put('/api/clothes', (req, res) => {
+  const cloth = clothes.findIndex((cloth) => cloth.id === req.body.id);
+
+  if (cloth < minArrayIndex) {
+    res.statusCode = 204;
+    res.send();
+
+    return;
+  }
+
+  clothes[cloth] = req.body;
+
+  res.statusCode = 200;
   res.send();
 });
 
